@@ -1,0 +1,40 @@
+<atlassian-plugin key="${project.groupId}.${project.artifactId}" name="${project.name}" plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}" />
+        <param name="plugin-icon">images/zip16.png</param>
+        <param name="plugin-logo">images/zip128.png</param>
+		<!--param name="atlassian-licensing-enabled">true</param-->
+    </plugin-info>
+
+    <resource type="i18n" name="i18n" location="attdwnld"/>
+    
+    <web-resource key="pl-cendrowiczm-attdwnld-resources" name="Download All Attachments - Web Resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        
+        <resource type="download" name="attdwnld.css" location="/css/attdwnld.css"/>
+        <resource type="download" name="attdwnld.js" location="/js/attdwnld.js"/>
+        <resource type="download" name="images/" location="/images"/>
+
+        <context>attdwnld</context>
+    </web-resource>
+	
+	<web-item key="pl-cendrowiczm-attdwnld-web-item" name="Download All Attachments - Web-item" section="operations-attachments" weight="1000">
+        <label key="attdwnld.label"/>
+		<tooltip key="attdwnld.tooltip"/>
+        <link linkId="pl-cendrowiczm-attdwnld">/secure/DownloadAllAttachmentsAction!execute.jspa?id=${issueId}</link>
+        <param name="isPopupLink">true</param>
+		<!--condition class="pl.cendrowiczm.jira.plugins.attachments.download.LicenseValidator"></condition-->
+    </web-item>
+
+    <webwork1 key="pl-cendrowiczm-attdwnld-webwork" name="Download All Attachments - Webwork" class="java.lang.Object">
+        <actions>
+            <action name="pl.cendrowiczm.jira.plugins.attachments.download.DownloadAllAttachmentsAction" alias="DownloadAllAttachmentsAction">
+            </action>
+        </actions>
+    </webwork1>
+	
+	<!--component-import key="pluginLicenseManager" interface="com.atlassian.upm.api.license.PluginLicenseManager"/-->
+	
+</atlassian-plugin>
