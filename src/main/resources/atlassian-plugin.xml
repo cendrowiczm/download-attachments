@@ -26,6 +26,7 @@
         <link linkId="pl-cendrowiczm-attdwnld">/secure/DownloadAllAttachmentsAction!execute.jspa?id=${issueId}</link>
         <param name="isPopupLink">true</param>
 		<!--condition class="pl.cendrowiczm.jira.plugins.attachments.download.LicenseValidator"></condition-->
+		<condition class="pl.cendrowiczm.jira.plugins.attachments.download.AttachmentsAmountValidator"></condition>
     </web-item>
 
     <webwork1 key="pl-cendrowiczm-attdwnld-webwork" name="Download All Attachments - Webwork" class="java.lang.Object">
